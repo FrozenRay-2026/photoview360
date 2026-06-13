@@ -1,42 +1,197 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PhotoView360 – README</title>
+<style>
+  body { font-family: "Segoe UI", Meiryo, sans-serif; max-width: 800px; margin: 32px auto; color: #222; line-height: 1.7; }
+  h1   { font-size: 1.6em; border-bottom: 2px solid #4a90d9; padding-bottom: 6px; }
+  h2   { font-size: 1.2em; margin-top: 2em; border-left: 4px solid #4a90d9; padding-left: 8px; }
+  h3   { font-size: 1.05em; margin-top: 1.4em; }
+  code { background: #f3f3f3; border-radius: 3px; padding: 1px 5px; font-size: .92em; }
+  pre  { background: #f3f3f3; border-radius: 4px; padding: 12px 16px; font-size: .88em; overflow-x: auto; }
+  table{ border-collapse: collapse; width: 100%; }
+  th,td{ border: 1px solid #ccc; padding: 6px 10px; font-size: .93em; }
+  th   { background: #eaf2ff; }
+  .note{ background: #fff8e1; border-left: 4px solid #f0c040; padding: 8px 12px; border-radius: 3px; }
+  ul,ol{ padding-left: 1.5em; }
+  li   { margin: .3em 0; }
+  hr.lang-divider {
+    border: none; border-top: 3px solid #4a90d9;
+    margin: 48px 0 40px;
+  }
+  .lang-label {
+    display: inline-block; background: #4a90d9; color: #fff;
+    font-size: .85em; font-weight: bold; padding: 2px 12px;
+    border-radius: 3px; margin-bottom: 16px; letter-spacing: .05em;
+  }
+</style>
+</head>
 <body>
-<h3>Plugin Builder Results</h3>
 
-Congratulations! You just built a plugin for QGIS!<br/><br />
+<!-- ═══════════════════════════════════════════════
+     ENGLISH
+════════════════════════════════════════════════ -->
+<span class="lang-label">English</span>
+<h1>PhotoView360</h1>
+<p>
+  A QGIS plugin that <strong>instantly opens a 360-degree panoramic image in your browser</strong>
+  by clicking a feature in a vector layer.<br>
+  The viewer is powered by <a href="https://aframe.io/" target="_blank">A-Frame</a>
+  and requires no additional installation.
+</p>
 
-<div id='help' style='font-size:.9em;'>
-Your plugin <b>PhotoView360</b> was created in:<br>
-&nbsp;&nbsp;<b>C:/Users/katzc/AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins\photoview360</b>
-<p>
-Your QGIS plugin directory is located at:<br>
-&nbsp;&nbsp;<b>C:/Users/katzc/AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins</b>
-<p>
-<h3>What's Next</h3>
+<h2>Requirements</h2>
+<table>
+  <tr><th>Item</th><th>Requirement</th></tr>
+  <tr><td>QGIS</td><td>3.0 or later</td></tr>
+  <tr><td>Python</td><td>3.x (bundled with QGIS)</td></tr>
+  <tr><td>Browser</td><td>Chrome / Edge / Firefox (A-Frame compatible)</td></tr>
+  <tr><td>Image format</td><td>JPEG / PNG (equirectangular 360° images recommended)</td></tr>
+</table>
+
+<h2>Installation</h2>
 <ol>
-    <li>If resources.py is not present in your plugin directory, compile the resources file using pyrcc5 (simply use <b>pb_tool</b> or <b>make</b> if you have automake)
-    <li>Optionally, test the generated sources using <b>make test</b> (or run tests from your IDE)
-    <li>Copy the entire directory containing your new plugin to the QGIS plugin directory (see Notes below)
-    <li>Test the plugin by enabling it in the QGIS plugin manager
-    <li>Customize it by editing the implementation file <b>photoview360.py</b>
-    <li>Create your own custom icon, replacing the default <b>icon.png</b>
-    <li>Modify your user interface by opening <b>photoview360_dialog_base.ui</b> in Qt Designer
+  <li>Copy the <code>photoview360</code> directory to your QGIS plugin folder:<br>
+      <code>C:\Users\&lt;username&gt;\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\</code></li>
+  <li>Open QGIS and go to <strong>Plugins → Manage and Install Plugins</strong></li>
+  <li>Enable <strong>PhotoView360</strong></li>
 </ol>
-Notes:
+
+<h2>Usage</h2>
+
+<h3>1. Open the dialog</h3>
+<p>Click the PhotoView360 icon in the toolbar, or go to <strong>Plugins → PhotoView360 → PhotoView360</strong>.</p>
+
+<h3>2. Configure the layer and path</h3>
+<p>Select a vector layer containing photo locations in <strong>Photo Layer</strong>.<br>
+Then choose how to specify the image path:</p>
+
+<table>
+  <tr><th>Mode</th><th>Description</th></tr>
+  <tr>
+    <td>① Full path via attribute field</td>
+    <td>Select a field that stores the absolute path to the image (e.g. <code>C:\photos\IMG_001.jpg</code>).</td>
+  </tr>
+  <tr>
+    <td>② Filename via attribute field</td>
+    <td>Select a field that stores the filename (e.g. <code>IMG_001.jpg</code>) and specify the image folder separately.
+        Check <em>Include subfolders</em> to search recursively.</td>
+  </tr>
+</table>
+
+<h3>3. Select a location and open the viewer</h3>
+<ol>
+  <li>Click <strong>Select photo location</strong> to activate the tool (the button will appear pressed)</li>
+  <li>Click a feature on the map — the browser opens automatically with the 360° viewer</li>
+  <li>The selected feature is highlighted in red on the map</li>
+</ol>
+
+<h3>Viewer controls</h3>
+<table>
+  <tr><th>Action</th><th>Result</th></tr>
+  <tr><td>Drag</td><td>Rotate view</td></tr>
+  <tr><td>Mouse wheel</td><td>Zoom in / out (follows cursor direction)</td></tr>
+</table>
+
+<h3>Language toggle</h3>
+<p>Click the <strong>English / 日本語</strong> button at the top-right of the dialog to switch the UI language instantly.</p>
+
+<h2>How it works</h2>
 <ul>
-    <li>You can use <b>pb_tool</b> to compile, deploy, and manage your plugin. Tweak the <i>pb_tool.cfg</i> file included with your plugin as you add files. Install <b>pb_tool</b> using 
-        <i>pip</i> or <i>easy_install</i>. See <b>http://loc8.cc/pb_tool</b> for more information.
-    <li>You can also use the <b>Makefile</b> to compile and deploy when you
-        make changes. This requires GNU make (gmake). The Makefile is ready to use, however you 
-        will have to edit it to add addional Python source files, dialogs, and translations.
+  <li>Feature clicks are detected via <code>QgsMapToolIdentify</code></li>
+  <li>A <strong>local HTTP server</strong> (Python standard library) is started for the image folder and serves images via <code>localhost</code></li>
+  <li>The image is rendered as a sphere using A-Frame's <code>&lt;a-sky&gt;</code> component</li>
+  <li>The server is reused as long as the folder remains the same; the port is assigned automatically by the OS</li>
 </ul>
-</div>
-<div style='font-size:.9em;'>
+
+<h2>Author &amp; License</h2>
 <p>
-For information on writing PyQGIS code, see <b>http://loc8.cc/pyqgis_resources</b> for a list of resources.
+  Author: Rei Ito &lt;katzchen.th@gmail.com&gt;<br>
+  License: GNU GPL v2 or later
 </p>
-</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     JAPANESE
+════════════════════════════════════════════════ -->
+<hr class="lang-divider">
+<span class="lang-label">日本語</span>
+<h1>PhotoView360</h1>
 <p>
-&copy;2011-2019 GeoApt LLC - geoapt.com 
+  QGIS ベクターレイヤーのフィーチャをクリックするだけで、
+  関連付けられた <strong>360度パノラマ画像をブラウザで即時表示</strong> する QGIS プラグインです。<br>
+  ビューアーは <a href="https://aframe.io/" target="_blank">A-Frame</a> を使用しており、追加インストール不要で動作します。
 </p>
+
+<h2>動作環境</h2>
+<table>
+  <tr><th>項目</th><th>要件</th></tr>
+  <tr><td>QGIS</td><td>3.0 以上</td></tr>
+  <tr><td>Python</td><td>3.x（QGIS 同梱）</td></tr>
+  <tr><td>ブラウザ</td><td>Chrome / Edge / Firefox（A-Frame 対応）</td></tr>
+  <tr><td>画像形式</td><td>JPEG / PNG（等長方形射影の 360 度画像を推奨）</td></tr>
+</table>
+
+<h2>インストール</h2>
+<ol>
+  <li>プラグインフォルダに <code>photoview360</code> ディレクトリをコピー<br>
+      <code>C:\Users\&lt;ユーザー名&gt;\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\</code></li>
+  <li>QGIS を起動し、メニュー <strong>プラグイン → プラグインの管理とインストール</strong> を開く</li>
+  <li><strong>PhotoView360</strong> を有効化する</li>
+</ol>
+
+<h2>使い方</h2>
+
+<h3>1. ダイアログを開く</h3>
+<p>ツールバーの PhotoView360 アイコン、またはメニュー <strong>プラグイン → PhotoView360 → PhotoView360</strong> をクリックします。</p>
+
+<h3>2. レイヤーとパスの設定</h3>
+<p><strong>フォトレイヤー</strong> で360度写真の位置情報を持つベクターレイヤーを選択します。<br>
+次に、画像パスの指定方法を選んでください：</p>
+
+<table>
+  <tr><th>モード</th><th>説明</th></tr>
+  <tr>
+    <td>① フルパスを属性フィールドで指定</td>
+    <td>画像の絶対パス（例：<code>C:\photos\IMG_001.jpg</code>）が格納されているフィールドを選択します。</td>
+  </tr>
+  <tr>
+    <td>② ファイル名を属性フィールドで指定</td>
+    <td>ファイル名（例：<code>IMG_001.jpg</code>）が格納されているフィールドを選択し、画像の保存フォルダを別途指定します。「サブフォルダを含む」にチェックを入れると、サブフォルダ内も再帰検索します。</td>
+  </tr>
+</table>
+
+<h3>3. 撮影地点を選択してビューアーを開く</h3>
+<ol>
+  <li><strong>撮影地点を選択</strong> ボタンをクリックしてアクティブにします（ボタンが押し込み状態になります）</li>
+  <li>地図上のフィーチャをクリックすると、ブラウザが自動的に開き 360 度ビューアーが表示されます</li>
+  <li>選択したフィーチャは地図上で赤くハイライト表示されます</li>
+</ol>
+
+<h3>ビューアーの操作</h3>
+<table>
+  <tr><th>操作</th><th>動作</th></tr>
+  <tr><td>ドラッグ</td><td>視点を回転</td></tr>
+  <tr><td>マウスホイール</td><td>ズームイン / ズームアウト（マウスカーソル方向に追従）</td></tr>
+</table>
+
+<h3>言語切替</h3>
+<p>ダイアログ右上の <strong>English / 日本語</strong> ボタンで UI 言語を即座に切り替えられます。</p>
+
+<h2>仕組み</h2>
+<ul>
+  <li>フィーチャのクリックを <code>QgsMapToolIdentify</code> で検出</li>
+  <li>画像フォルダに対して <strong>ローカル HTTP サーバー</strong>（Python 標準ライブラリ）を立ち上げ、<code>localhost</code> 経由で画像を配信</li>
+  <li>A-Frame の <code>&lt;a-sky&gt;</code> コンポーネントで等長方形射影画像を球面マッピング</li>
+  <li>サーバーはフォルダが変わるまで再利用（ポートは OS が自動割り当て）</li>
+</ul>
+
+<h2>作者・ライセンス</h2>
+<p>
+  Author: Rei Ito &lt;katzchen.th@gmail.com&gt;<br>
+  License: GNU GPL v2 or later
+</p>
+
 </body>
 </html>
