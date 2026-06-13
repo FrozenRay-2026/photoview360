@@ -103,7 +103,7 @@ Changelog
 
 Author & License
 ----------------
-  Author : Rei Ito <katzchen.th@gmail.com>
+  Author : Rei Ito
   License: GNU GPL v2 or later
 
 # PhotoView360
